@@ -1,22 +1,22 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "example/version"
+require "tomo/plugin/example/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "example"
-  spec.version       = Example::VERSION
+  spec.version       = Tomo::Plugin::Example::VERSION
   spec.authors       = ["Example Owner"]
   spec.email         = ["owner@example.com"]
 
   spec.summary       = ""
-  spec.homepage      = "https://github.com/mattbrictson/gem"
+  spec.homepage      = "https://github.com/mattbrictson/tomo-plugin"
   spec.license       = "MIT"
 
   spec.metadata = {
-    "bug_tracker_uri" => "https://github.com/mattbrictson/gem/issues",
-    "changelog_uri" => "https://github.com/mattbrictson/gem/releases",
-    "source_code_uri" => "https://github.com/mattbrictson/gem",
-    "homepage_uri" => "https://github.com/mattbrictson/gem"
+    "bug_tracker_uri" => "https://github.com/mattbrictson/tomo-plugin/issues",
+    "changelog_uri" => "https://github.com/mattbrictson/tomo-plugin/releases",
+    "source_code_uri" => "https://github.com/mattbrictson/tomo-plugin",
+    "homepage_uri" => "https://github.com/mattbrictson/tomo-plugin"
   }
 
   # Specify which files should be added to the gem when it is released.
@@ -26,6 +26,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = ">= 2.4.0"
+
+  spec.add_dependency "tomo"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "minitest", "~> 5.11"

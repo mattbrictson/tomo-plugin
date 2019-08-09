@@ -15,7 +15,7 @@ task bump: %w[bump:bundler bump:ruby bump:year]
 
 Rake::Task["release"].enhance do
   puts "Don't forget to publish the release on GitHub!"
-  system "open https://github.com/mattbrictson/gem/releases"
+  system "open https://github.com/mattbrictson/tomo-plugin/releases"
 end
 
 namespace :bump do

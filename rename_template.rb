@@ -16,12 +16,18 @@ def main
   assert_git_repo!
   git_meta = read_git_data
 
-  gem_name = ask("Gem name?", default: git_meta[:origin_repo_name])
-  gem_summary = ask("Gem summary (< 60 chars)?", default: "")
+  plugin_name = ask(
+    "Plugin name?",
+    default: git_meta[:origin_repo_name].sub(/^tomo-plugin-/, "")
+  )
+  plugin_name.sub!(/^tomo-plugin-/, "")
+  gem_name = "tomo-plugin-#{plugin_name}"
+  gem_summary = ask(
+    "Gem summary (< 60 chars)?", default: "#{plugin_name} tasks for tomo"
+  )
   author_email = ask("Author email?", default: git_meta[:user_email])
   author_name = ask("Author name?", default: git_meta[:user_name])
   github_repo = ask("GitHub repository?", default: git_meta[:origin_repo_path])
-  exe = ask_yes_or_no("Include an executable (CLI) in this gem?", default: "N")
 
   if ask_yes_or_no("Create GitHub labels?", default: "Y")
     puts
@@ -50,78 +56,85 @@ def main
   ensure_executable "bin/console"
   ensure_executable "bin/setup"
 
-  if exe
-    replace_in_file "exe/example",
-                    "example" => as_path(gem_name),
-                    "Example" => as_module(gem_name)
-
-    git "mv", "exe/example", "exe/#{gem_name}"
-    ensure_executable "exe/#{gem_name}"
-
-    replace_in_file "lib/example/cli.rb",
-                    "Example" => as_module(gem_name)
-
-    git "mv", "lib/example/cli.rb", "lib/#{as_path(gem_name)}/cli.rb"
-    reindent_module "lib/#{as_path(gem_name)}/cli.rb"
-  else
-    git "rm", "exe/example", "lib/example/cli.rb"
-    remove_line "lib/example.rb", /autoload :CLI/
-  end
-
   replace_in_file "LICENSE.txt",
                   "Example Owner" => author_name
 
   replace_in_file "Rakefile",
                   "example.gemspec" => "#{gem_name}.gemspec",
-                  "mattbrictson/gem" => github_repo
+                  "mattbrictson/tomo-plugin" => github_repo
 
   replace_in_file "README.md",
-                  "mattbrictson/gem" => github_repo,
-                  'require "example"' => %Q(require "#{as_path(gem_name)}"),
-                  "example" => gem_name,
+                  "mattbrictson/tomo-plugin" => github_repo,
+                  "example" => plugin_name,
+                  "plugin_name" => plugin_name.tr("-", "_"),
                   "replace_with_gem_name" => gem_name,
                   /\A.*<!-- END FRONT MATTER -->\n+/m => ""
 
   replace_in_file "CHANGELOG.md",
-                  "mattbrictson/gem" => github_repo
+                  "mattbrictson/tomo-plugin" => github_repo
 
   replace_in_file "CODE_OF_CONDUCT.md",
                   "owner@example.com" => author_email
 
-  replace_in_file "bin/console",
-                  'require "example"' => %Q(require "#{as_path(gem_name)}")
+  replace_in_file "bin/console", "tomo/plugin/example" => as_path(gem_name)
 
   replace_in_file "example.gemspec",
-                  "mattbrictson/gem" => github_repo,
+                  "mattbrictson/tomo-plugin" => github_repo,
                   '"Example Owner"' => author_name.inspect,
                   '"owner@example.com"' => author_email.inspect,
                   '"example"' => gem_name.inspect,
-                  "example/version" => "#{as_path(gem_name)}/version",
-                  "Example::VERSION" => "#{as_module(gem_name)}::VERSION",
+                  "example/version" => "#{as_path(plugin_name)}/version",
+                  "Example::VERSION" => "#{as_module(plugin_name)}::VERSION",
                   /summary\s*=\s*("")/ => gem_summary.inspect
 
   git "mv", "example.gemspec", "#{gem_name}.gemspec"
 
-  replace_in_file "lib/example.rb",
-                  "example" => as_path(gem_name),
-                  "Example" => as_module(gem_name)
+  replace_in_file "lib/tomo/plugin/example.rb",
+                  "example" => as_path(plugin_name),
+                  "plugin_name" => plugin_name.tr("-", "_"),
+                  "Example" => as_module(plugin_name)
 
-  git "mv", "lib/example.rb", "lib/#{as_path(gem_name)}.rb"
+  git "mv", "lib/tomo/plugin/example.rb", "lib/#{as_path(gem_name)}.rb"
+
+  replace_in_file "lib/tomo/plugin/example/version.rb", <<~MODULE => ""
+    module Tomo
+      module Plugin
+      end
+    end
+
+  MODULE
+
+  %w[helpers tasks version].each do |file|
+    replace_in_file "lib/tomo/plugin/example/#{file}.rb",
+                    "Example" => as_module(plugin_name),
+                    "example" => plugin_name
+    git "mv",
+        "lib/tomo/plugin/example/#{file}.rb",
+        "lib/#{as_path(gem_name)}/#{file}.rb"
+  end
+
   reindent_module "lib/#{as_path(gem_name)}.rb"
-
-  replace_in_file "lib/example/version.rb",
-                  "Example" => as_module(gem_name)
-
-  git "mv", "lib/example/version.rb", "lib/#{as_path(gem_name)}/version.rb"
   reindent_module "lib/#{as_path(gem_name)}/version.rb"
 
-  replace_in_file "test/example_test.rb",
-                  "Example" => as_module(gem_name)
+  replace_in_file "test/tomo/plugin/example_test.rb",
+                  "Example" => as_module(plugin_name)
+  git "mv",
+      "test/tomo/plugin/example_test.rb",
+      "test/#{as_path(gem_name)}_test.rb"
 
-  git "mv", "test/example_test.rb", "test/#{as_path(gem_name)}_test.rb"
+  %w[helpers_test tasks_test].each do |file|
+    replace_in_file "test/tomo/plugin/example/#{file}.rb",
+                    "Example" => as_module(plugin_name)
+    replace_in_file "test/tomo/plugin/example/#{file}.rb",
+                    "example" => plugin_name
+    git "mv",
+        "test/tomo/plugin/example/#{file}.rb",
+        "test/#{as_path(gem_name)}/#{file}.rb"
+  end
 
   replace_in_file "test/test_helper.rb",
-                  'require "example"' => %Q(require "#{as_path(gem_name)}")
+                  'require "tomo/plugin/example"' =>
+                    %Q(require "#{as_path(gem_name)}")
 
   git "rm", "rename_template.rb"
 
@@ -129,7 +142,7 @@ def main
 
     All set!
 
-    The project has been renamed from "example" to "#{gem_name}".
+    The project has been renamed to "#{gem_name}".
     Review the changes and then run:
 
       git commit && git push
@@ -231,8 +244,13 @@ def as_module(gem_name)
   end.join("::")
 end
 
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/MethodLength
 def reindent_module(path)
   contents = IO.read(path)
+  preamble = contents[/\A(.*)^(?:module|class)/m, 1]
+  contents.sub!(preamble, "") if preamble
+
   namespace_mod = contents[/(?:module|class) (\S+)/, 1]
   return unless namespace_mod.include?("::")
 
@@ -241,9 +259,12 @@ def reindent_module(path)
     contents = "module #{mod}\n#{contents.gsub(/^/, '  ')}end\n"
   end
 
-  IO.write(path, contents)
+  contents.gsub!(/^\s+$/, "")
+  IO.write(path, [preamble, contents].join)
   git "add", path
 end
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/MethodLength
 
 def authenticate_github(login, password)
   octokit = Octokit::Client.new(login: login, password: password, netrc: false)

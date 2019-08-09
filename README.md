@@ -1,6 +1,8 @@
-# gem template
+# tomo plugin template
 
-This is a GitHub template for creating Ruby gems. Press [**Use this template**](https://github.com/mattbrictson/gem/generate) to generate a project from this template. In the generated project, run this script to rename the gem to meet your needs:
+This is a GitHub template for creating [tomo](https://github.com/mattbrictson/tomo) plugins, which are packaged as Ruby gems.
+
+Read the tomo tutorial [Publishing a Plugin](https://tomo-deploy.com/tutorials/publishing-a-plugin/) to get started. Then press [**Use this template**](https://github.com/mattbrictson/tomo-plugin/generate) to generate a project from this template. In the generated project, run this script to rename the gem to meet your needs:
 
 ```
 $ ruby rename_template.rb
@@ -19,36 +21,64 @@ This template is based on `bundle gem` with some notable improvements:
 
 <!-- END FRONT MATTER -->
 
-# example
+# tomo-plugin-example
 
 [![Gem Version](https://badge.fury.io/rb/replace_with_gem_name.svg)](https://rubygems.org/gems/replace_with_gem_name)
-[![Travis](https://img.shields.io/travis/mattbrictson/gem.svg?label=travis)](https://travis-ci.org/mattbrictson/gem)
-[![Circle](https://circleci.com/gh/mattbrictson/gem.svg?style=shield)](https://circleci.com/gh/mattbrictson/gem)
-[![Code Climate](https://codeclimate.com/github/mattbrictson/gem/badges/gpa.svg)](https://codeclimate.com/github/mattbrictson/gem)
+[![Travis](https://img.shields.io/travis/mattbrictson/tomo-plugin.svg?label=travis)](https://travis-ci.org/mattbrictson/tomo-plugin)
+[![Circle](https://circleci.com/gh/mattbrictson/tomo-plugin.svg?style=shield)](https://circleci.com/gh/mattbrictson/tomo-plugin)
+[![Code Climate](https://codeclimate.com/github/mattbrictson/tomo-plugin/badges/gpa.svg)](https://codeclimate.com/github/mattbrictson/tomo-plugin)
 
-TODO: Description of this gem goes here.
+This is a [tomo](https://github.com/mattbrictson/tomo) plugin that ... TODO: Description of this plugin goes here.
 
 ---
 
-- [Quick start](#quick-start)
+- [Installation](#installation)
+- [Settings](#settings)
+- [Tasks](#tasks)
 - [Support](#support)
 - [License](#license)
 - [Code of conduct](#code-of-conduct)
 - [Contribution guide](#contribution-guide)
 
-## Quick start
+## Installation
+
+Run:
 
 ```
-$ gem install example
+$ gem install tomo-plugin-example
 ```
+
+Or add it to your Gemfile:
 
 ```ruby
-require "example"
+gem "tomo-plugin-example"
 ```
+
+Then add the following to `.tomo/config.rb`:
+
+```ruby
+plugin "example"
+```
+
+## Settings
+
+TODO: document plugin settings
+
+| Name                  | Purpose | Default |
+| --------------------- | ------- | ------- |
+| `plugin_name_setting` | TODO    | `nil`   |
+
+## Tasks
+
+TODO: document plugin tasks
+
+### example:task_name
+
+TODO
 
 ## Support
 
-If you want to report a bug, or have ideas, feedback or questions about the gem, [let me know via GitHub issues](https://github.com/mattbrictson/gem/issues/new) and I will do my best to provide a helpful answer. Happy hacking!
+If you want to report a bug, or have ideas, feedback or questions about the gem, [let me know via GitHub issues](https://github.com/mattbrictson/tomo-plugin/issues/new) and I will do my best to provide a helpful answer. Happy hacking!
 
 ## License
 
