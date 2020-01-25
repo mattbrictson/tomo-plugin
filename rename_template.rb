@@ -90,7 +90,7 @@ def main
   git "mv", "example.gemspec", "#{gem_name}.gemspec"
 
   replace_in_file "lib/tomo/plugin/example.rb",
-                  "example" => as_path(plugin_name),
+                  "example" => as_path(plugin_name).sub(%r{^.*/}, ""),
                   "plugin_name" => plugin_name.tr("-", "_"),
                   "Example" => as_module(plugin_name)
 
