@@ -1,7 +1,7 @@
 require "tomo"
-require "tomo/plugin/example/helpers"
-require "tomo/plugin/example/tasks"
-require "tomo/plugin/example/version"
+require_relative "example/helpers"
+require_relative "example/tasks"
+require_relative "example/version"
 
 module Tomo::Plugin::Example
   extend Tomo::PluginDSL
