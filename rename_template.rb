@@ -244,8 +244,6 @@ def as_module(gem_name)
   end.join("::")
 end
 
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
 def reindent_module(path)
   contents = IO.read(path)
   preamble = contents[/\A(.*)^(?:module|class)/m, 1]
@@ -263,8 +261,6 @@ def reindent_module(path)
   IO.write(path, [preamble, contents].join)
   git "add", path
 end
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength
 
 def authenticate_github(login, password)
   octokit = Octokit::Client.new(login: login, password: password, netrc: false)
