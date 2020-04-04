@@ -25,7 +25,7 @@ This template is based on `bundle gem` with some notable improvements:
 
 [![Gem Version](https://badge.fury.io/rb/replace_with_gem_name.svg)](https://rubygems.org/gems/replace_with_gem_name)
 [![Travis](https://img.shields.io/travis/mattbrictson/tomo-plugin.svg?label=travis)](https://travis-ci.org/mattbrictson/tomo-plugin)
-[![Circle](https://circleci.com/gh/mattbrictson/tomo-plugin.svg?style=shield)](https://circleci.com/gh/mattbrictson/tomo-plugin)
+[![Circle](https://circleci.com/gh/mattbrictson/tomo-plugin.svg?style=shield)](https://app.circleci.com/pipelines/github/mattbrictson/tomo-plugin?branch=master)
 [![Code Climate](https://codeclimate.com/github/mattbrictson/tomo-plugin/badges/gpa.svg)](https://codeclimate.com/github/mattbrictson/tomo-plugin)
 
 This is a [tomo](https://github.com/mattbrictson/tomo) plugin that ... TODO: Description of this plugin goes here.
