@@ -10,16 +10,11 @@ gemfile do
   gem "octokit", "~> 4.14"
 end
 
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
-def main
+def main # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   assert_git_repo!
   git_meta = read_git_data
 
-  plugin_name = ask(
-    "Plugin name?",
-    default: git_meta[:origin_repo_name].sub(/^tomo-plugin-/, "")
-  )
+  plugin_name = ask("Plugin name?", default: git_meta[:origin_repo_name].sub(/^tomo-plugin-/, ""))
   plugin_name.sub!(/^tomo-plugin-/, "")
   gem_name = "tomo-plugin-#{plugin_name}"
   gem_summary = ask(
@@ -108,9 +103,7 @@ def main
     replace_in_file "lib/tomo/plugin/example/#{file}.rb",
                     "Example" => as_module(plugin_name),
                     "example" => plugin_name
-    git "mv",
-        "lib/tomo/plugin/example/#{file}.rb",
-        "lib/#{as_path(gem_name)}/#{file}.rb"
+    git "mv", "lib/tomo/plugin/example/#{file}.rb", "lib/#{as_path(gem_name)}/#{file}.rb"
   end
 
   reindent_module "lib/#{as_path(gem_name)}.rb"
@@ -118,18 +111,14 @@ def main
 
   replace_in_file "test/tomo/plugin/example_test.rb",
                   "Example" => as_module(plugin_name)
-  git "mv",
-      "test/tomo/plugin/example_test.rb",
-      "test/#{as_path(gem_name)}_test.rb"
+  git "mv", "test/tomo/plugin/example_test.rb", "test/#{as_path(gem_name)}_test.rb"
 
   %w[helpers_test tasks_test].each do |file|
     replace_in_file "test/tomo/plugin/example/#{file}.rb",
                     "Example" => as_module(plugin_name)
     replace_in_file "test/tomo/plugin/example/#{file}.rb",
                     "example" => plugin_name
-    git "mv",
-        "test/tomo/plugin/example/#{file}.rb",
-        "test/#{as_path(gem_name)}/#{file}.rb"
+    git "mv", "test/tomo/plugin/example/#{file}.rb", "test/#{as_path(gem_name)}/#{file}.rb"
   end
 
   replace_in_file "test/test_helper.rb",
@@ -149,8 +138,6 @@ def main
 
   MESSAGE
 end
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength
 
 def assert_git_repo!
   return if File.file?(".git/config")
