@@ -7,6 +7,6 @@ class Tomo::Plugin::Example::HelpersTest < Minitest::Test
 
   def test_shout
     @tester.call_helper(:shout, "good morning")
-    assert_equal('echo GOOD\ MORNING', @tester.executed_script)
+    assert_equal('echo GOOD\ MORNING', @tester.executed_script) # rubocop:disable Style/StringLiterals
   end
 end

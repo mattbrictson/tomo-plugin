@@ -7,6 +7,6 @@ class Tomo::Plugin::Example::TasksTest < Minitest::Test
 
   def test_hello
     @tester.run_task("example:hello")
-    assert_equal('echo hello,\ world', @tester.executed_script)
+    assert_equal('echo hello,\ world', @tester.executed_script) # rubocop:disable Style/StringLiterals
   end
 end
