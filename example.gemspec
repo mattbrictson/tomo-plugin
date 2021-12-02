@@ -15,7 +15,8 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/mattbrictson/tomo-plugin/issues",
     "changelog_uri" => "https://github.com/mattbrictson/tomo-plugin/releases",
     "source_code_uri" => "https://github.com/mattbrictson/tomo-plugin",
-    "homepage_uri" => spec.homepage
+    "homepage_uri" => spec.homepage,
+    "rubygems_mfa_required" => "true"
   }
 
   # Specify which files should be added to the gem when it is released.
