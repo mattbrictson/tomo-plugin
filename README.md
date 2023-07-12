@@ -12,7 +12,7 @@ Note that to get the full benefits of the script, you will need the [gh](https:/
 
 This template is based on `bundle gem` with some notable improvements:
 
-- GitHub Actions and Semaphore CI configuration
+- GitHub Actions configuration
 - Minitest, with minitest-reporters for nicely formatted test output
 - Rubocop with a good set of configuration
 - [release-drafter](https://github.com/apps/release-drafter) GitHub Action for automating release notes
@@ -25,9 +25,10 @@ This template is based on `bundle gem` with some notable improvements:
 
 # tomo-plugin-example
 
-[![Gem Version](https://badge.fury.io/rb/replace_with_gem_name.svg)](https://rubygems.org/gems/replace_with_gem_name)
-[![CI](https://github.com/mattbrictson/tomo-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/mattbrictson/tomo-plugin/actions/workflows/ci.yml)
-[![Code Climate](https://codeclimate.com/github/mattbrictson/tomo-plugin/badges/gpa.svg)](https://codeclimate.com/github/mattbrictson/tomo-plugin)
+[![Gem Version](https://img.shields.io/gem/v/replace_with_gem_name)](https://rubygems.org/gems/replace_with_gem_name)
+[![Gem Downloads](https://img.shields.io/gem/dt/replace_with_gem_name)](https://www.ruby-toolbox.com/projects/replace_with_gem_name)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mattbrictson/tomo-plugin/ci.yml)](https://github.com/mattbrictson/tomo-plugin/actions/workflows/ci.yml)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/mattbrictson/tomo-plugin)](https://codeclimate.com/github/mattbrictson/tomo-plugin)
 
 This is a [tomo](https://github.com/mattbrictson/tomo) plugin that ... TODO: Description of this plugin goes here.
 
