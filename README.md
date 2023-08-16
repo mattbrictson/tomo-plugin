@@ -5,7 +5,7 @@ This is a GitHub template for creating [tomo](https://github.com/mattbrictson/to
 Read the tomo tutorial [Publishing a Plugin](https://tomo-deploy.com/tutorials/publishing-a-plugin/) to get started. Then press [**Use this template**](https://github.com/mattbrictson/tomo-plugin/generate) to generate a project from this template. In the generated project, run this script to rename the gem to meet your needs:
 
 ```
-$ ruby rename_template.rb
+ruby rename_template.rb
 ```
 
 Note that to get the full benefits of the script, you will need the [gh](https://github.com/cli/cli) command installed.
@@ -47,7 +47,7 @@ This is a [tomo](https://github.com/mattbrictson/tomo) plugin that ... TODO: Des
 Run:
 
 ```
-$ gem install tomo-plugin-example
+gem install tomo-plugin-example
 ```
 
 Or add it to your Gemfile:
