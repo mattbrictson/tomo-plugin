@@ -20,7 +20,7 @@ def main # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   author_name = ask("Author name?", default: git_meta[:user_name])
   github_repo = ask("GitHub repository?", default: git_meta[:origin_repo_path])
 
-  created_labels = \
+  created_labels =
     if gh_present?
       puts
       puts "I would like to use the `gh` executable to create labels in your repo."
