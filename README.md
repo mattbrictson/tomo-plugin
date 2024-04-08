@@ -2,7 +2,7 @@
 
 This is a GitHub template for creating [tomo](https://github.com/mattbrictson/tomo) plugins, which are packaged as Ruby gems.
 
-Read the tomo tutorial [Publishing a Plugin](https://tomo-deploy.com/tutorials/publishing-a-plugin/) to get started. Then press [**Use this template**](https://github.com/mattbrictson/tomo-plugin/generate) to generate a project from this template. In the generated project, run this script to rename the gem to meet your needs:
+Read the tomo tutorial [Publishing a Plugin](https://tomo.mattbrictson.com/tutorials/publishing-a-plugin/) to get started. Then press [**Use this template**](https://github.com/mattbrictson/tomo-plugin/generate) to generate a project from this template. In the generated project, run this script to rename the gem to meet your needs:
 
 ```
 ruby rename_template.rb
