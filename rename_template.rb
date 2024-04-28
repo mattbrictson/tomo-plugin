@@ -177,7 +177,7 @@ end
 
 def ask_yes_or_no(question, default: "N")
   default = default == "Y" ? "Y/n" : "y/N"
-  answer = ask(question, default: default)
+  answer = ask(question, default:)
 
   answer != "y/N" && answer.match?(/^y/i)
 end
@@ -190,7 +190,7 @@ def read_git_data
 
   {
     origin_repo_name: origin_repo_path&.split("/")&.last,
-    origin_repo_path: origin_repo_path,
+    origin_repo_path:,
     user_email: git("config", "user.email").chomp,
     user_name: git("config", "user.name").chomp
   }
