@@ -100,9 +100,6 @@ Style/EmptyMethod:
 Style/FormatStringToken:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 Style/NumericPredicate:
   Enabled: false
 
