@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "tomo"
 require_relative "example/helpers"
 require_relative "example/tasks"

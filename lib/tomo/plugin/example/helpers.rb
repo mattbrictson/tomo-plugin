@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tomo::Plugin::Example
   module Helpers
     # Defines a remote.shout helper
