@@ -28,7 +28,6 @@ This template is based on `bundle gem` with some notable improvements:
 [![Gem Version](https://img.shields.io/gem/v/replace_with_gem_name)](https://rubygems.org/gems/replace_with_gem_name)
 [![Gem Downloads](https://img.shields.io/gem/dt/replace_with_gem_name)](https://www.ruby-toolbox.com/projects/replace_with_gem_name)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mattbrictson/tomo-plugin/ci.yml)](https://github.com/mattbrictson/tomo-plugin/actions/workflows/ci.yml)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/mattbrictson/tomo-plugin)](https://codeclimate.com/github/mattbrictson/tomo-plugin)
 
 This is a [tomo](https://github.com/mattbrictson/tomo) plugin that ... TODO: Description of this plugin goes here.
 
