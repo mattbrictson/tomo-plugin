@@ -103,6 +103,10 @@ Style/EmptyMethod:
 Style/FormatStringToken:
   Enabled: false
 
+Style/OneClassPerFile:
+  Exclude:
+    - "lib/tomo/plugin/example/version.rb"
+
 Style/NumericPredicate:
   Enabled: false
 

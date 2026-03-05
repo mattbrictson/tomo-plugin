@@ -65,6 +65,9 @@ def main # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
 
   replace_in_file "bin/console", "tomo/plugin/example" => as_path(gem_name)
 
+  replace_in_file ".rubocop.yml",
+                  "example/version" => "#{as_path(plugin_name)}/version"
+
   replace_in_file "example.gemspec",
                   "mattbrictson/tomo-plugin" => github_repo,
                   '"Example Owner"' => author_name.inspect,
